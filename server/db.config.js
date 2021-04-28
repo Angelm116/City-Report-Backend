@@ -1,6 +1,6 @@
 module.exports = {
-  HOST: "127.0.0.1",
-  USER: "root",
-  PASSWORD: "Hotrod96$",
+  HOST: "city-report.c8yml2raj5dm.us-east-1.rds.amazonaws.com",
+  USER: "admin",
+  PASSWORD: "G41WYmkv6uo8JWrTfd2X",
   DB: "city_report"
 };
