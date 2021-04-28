@@ -13,7 +13,7 @@ const Report = function(report) {
   this.longitude = report.longitude, 
   this.date_time = report.date_time, 
   this.category = report.category, 
-  this.description = report.description
+  this.report_description = report.report_description
 };
 
 // "country":"", 
@@ -28,6 +28,7 @@ const Report = function(report) {
 // "date_time":"", 
 // "category":"", 
 // "description":""
+
 
 Report.createReport = (newReport, result) => {
   db.query(`INSERT INTO reports SET ?`, newReport, (err, res) => {
