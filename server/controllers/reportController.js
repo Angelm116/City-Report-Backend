@@ -14,10 +14,11 @@ const list_all_reports = function(req, res) {
 };
 
 const create_a_report = function(req, res) {
+
   var new_report = new Report(req.body);
   
   //handles null error 
-  if(!new_report.rid || !new_report.category){
+  if(!new_report){
 
             res.status(400).send({ error:true, message: 'empty report submitted' });
 

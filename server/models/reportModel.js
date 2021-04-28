@@ -16,18 +16,18 @@ const Report = function(report) {
   this.description = report.description
 };
 
-// country, 
-// state,
-// county,
-// city, 
-// zipcode, 
-// street_number, 
-// street_name, 
-// latitude, 
-// longitude, 
-// date_time, 
-// category, 
-// description
+// "country":"", 
+// "state":"",
+// "county":"",
+// "city":"", 
+// "zipcode":"", 
+// "street_number":"", 
+// "street_name":"", 
+// "latitude":"", 
+// "longitude":"", 
+// "date_time":"", 
+// "category":"", 
+// "description":""
 
 Report.createReport = (newReport, result) => {
   db.query(`INSERT INTO reports SET ?`, newReport, (err, res) => {
