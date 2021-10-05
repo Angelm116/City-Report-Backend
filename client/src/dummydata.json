@@ -1,0 +1,62 @@
+[
+    {
+        "report_id": 1,
+        "country": "United States",
+        "state": "Florida",
+        "county": "Orange",
+        "city": "Orlando",
+        "zipcode": "32817",
+        "street_number": "2025",
+        "street_name": "Royal Vista Ct.",
+        "latitude": 28.57064,
+        "longitude": -81.23968,
+        "date_time": "2021-04-28T01:27:00.000Z",
+        "category": "Suspicious Activity",
+        "report_description": "This is a description"
+    },
+    {
+        "report_id": 2,
+        "country": "US",
+        "state": "FL",
+        "county": "Orange County",
+        "city": "",
+        "zipcode": "32817",
+        "street_number": "10209",
+        "street_name": "E Colonial Dr",
+        "latitude": 28.5706335,
+        "longitude": -81.239728,
+        "date_time": "2021-04-28T21:35:17.000Z",
+        "category": "Physical Damage",
+        "report_description": ""
+    },
+    {
+        "report_id": 3,
+        "country": "US",
+        "state": "FL",
+        "county": "Orange County",
+        "city": "",
+        "zipcode": "",
+        "street_number": "",
+        "street_name": "",
+        "latitude": 28.5691444,
+        "longitude": -81.244968,
+        "date_time": "2021-04-29T15:21:53.000Z",
+        "category": "Suspicious Activity",
+        "report_description": ""
+    },
+    {
+        "report_id": 4,
+        "country": "US",
+        "state": "FL",
+        "county": "Orange County",
+        "city": "",
+        "zipcode": "32817",
+        "street_number": "10209",
+        "street_name": "E Colonial Dr",
+        "latitude": 28.5706167,
+        "longitude": -81.2396814,
+        "date_time": "2021-04-29T15:26:57.000Z",
+        "category": "Traffic Danger",
+        "report_description": ""
+    }
+]
