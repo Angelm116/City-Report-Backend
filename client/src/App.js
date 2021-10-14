@@ -6,6 +6,7 @@ import {
   GoogleMap,
 } from 'react-google-maps';
 
+// Hello Guille :)
 class App extends React.Component {
   state = {
     address: "",
