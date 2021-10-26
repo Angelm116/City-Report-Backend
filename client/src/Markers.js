@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import dummyData from './dummydata.json'
 import MarkerWithInfoWindow from './MarkerWithInfoWindow.js'
+import axios from 'axios';
+
 
 
 function Markers() {
@@ -18,8 +20,19 @@ function Markers() {
     // This functions populates data. Currenly it gets info from the 
     // dummydata.js file, but in the future it will call our API to 
     // get the data
+    // const getReports = () => {
+    //     setData(dummyData)
+    // }
+
     const getReports = () => {
-        setData(dummyData)
+        axios.post('http://52.13.199.35/api/map')
+            .then((res) => {
+                console.log(res.data)
+            }).catch((error) => {
+                console.log(error)
+            });
+
+        //this.setState({ name: '', email: '' })
     }
 
     // Here we generate and return a list of markers to show in the map. We use every report in data to a marker associated with it. 

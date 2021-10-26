@@ -11,6 +11,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(routes);
 
 //var port = process.env.PORT || 8080;
-var port =  8080;
+var port = 5000;
 
 app.listen(port, () => console.log(`Running on ${port}`));
