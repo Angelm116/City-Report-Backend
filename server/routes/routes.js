@@ -3,9 +3,9 @@ var reportsController = require('../controllers/reportController.js');
 var router = express.Router();
 
 
-router.get('/map', reportsController.list_all_reports);
+router.get('/api/map', reportsController.list_all_reports);
 
-router.post('/upload-report', reportsController.create_a_report);
+router.post('/api/upload-report', reportsController.create_a_report);
 
 
 
