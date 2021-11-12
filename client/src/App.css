@@ -36,3 +36,11 @@
     transform: rotate(360deg);
   }
 }
+
+.container{
+  margin-left: 2vw;
+}
+
+.map-page .col-map{
+  padding-left: 0px;
+}
