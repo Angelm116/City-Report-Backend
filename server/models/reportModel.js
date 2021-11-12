@@ -44,6 +44,7 @@ Report.createReport = (newReport, result) => {
 };
 
 Report.getAllReports = function (result) {
+  
   db.query("Select * from reports", function (err, res) {
 
           if(err) {
@@ -57,5 +58,67 @@ Report.getAllReports = function (result) {
           }
       });   
 };
+
+Report.getFilteredReports = function(params, result) {
+
+  var conditions = [];
+  var values = [];
+
+  if (typeof params.country !== 'undefined') {
+    conditions.push("country = ?");
+    values.push(params.country);
+  }
+
+  if (typeof params.state !== 'undefined') {
+    conditions.push("state = ?");
+    values.push(params.state);
+  }
+
+  if (typeof params.county !== 'undefined') {
+    conditions.push("county = ?");
+    values.push(params.county);
+  }
+
+  if (typeof params.city !== 'undefined') {
+    conditions.push("city = ?");
+    values.push(params.city);
+  }
+
+  if (typeof params.zipcode !== 'undefined') {
+    conditions.push("zipcode = ?");
+    values.push(params.zipcode);
+  }
+
+  if (typeof params.category !== 'undefined') {
+    conditions.push("category = ?");
+    values.push(params.category);
+  }
+
+  if (typeof params.startDate !== 'undefined') {
+    conditions.push("date_time >= ?");
+    values.push(params.startDate);
+  }
+
+  if (typeof params.endDate !== 'undefined') {
+    conditions.push("date_time <= ?");
+    values.push(params.endDate);
+  }
+
+  var whereClause = conditions.length ? 'WHERE ' + conditions.join(' AND ') : ''
+  var queryString = 'SELECT * FROM table ' + whereClause;
+  
+  db.query(queryString, values, function (err, res) {
+
+          if(err) {
+              console.log("error: ", err);
+              result(null, err);
+          }
+          else{
+            console.log('tasks : ', res);  
+
+           result(null, res);
+          }
+      });   
+}
 
 module.exports = Report;

@@ -1,15 +1,15 @@
 var Report = require('../models/reportModel.js');
 
 const list_all_reports = function(req, res) {
-  Report.getAllReports(function(err, report) {
+  Report.getAllReports(function(err, reports) {
 
     console.log('controller');
 
     if (err)
       res.send(err);
 
-    console.log('res', report);
-    res.send(report);
+    console.log('res', reports);
+    res.send(reports);
   });
 };
 
@@ -35,8 +35,23 @@ const create_a_report = function(req, res) {
 }
 };
 
+const get_filtered_reports = function(req, res) {
+
+  Report.getFilteredReports(req.body, function(err, reports) {
+
+    if (err)
+      res.send(err);
+
+    console.log('res', reports);
+    res.send(reports);
+    
+  });
+
+};
+
 module.exports = {
   list_all_reports, 
-  create_a_report
+  create_a_report, 
+  get_filtered_reports
 }
 
