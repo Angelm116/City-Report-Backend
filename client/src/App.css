@@ -1,6 +1,3 @@
-.App {
-  text-align: center;
-}
 
 .App-logo {
   height: 40vmin;
@@ -43,4 +40,12 @@
 
 .map-page .col-map{
   padding-left: 0px;
+  padding-right: 0px;
+}
+
+.col-filter{
+  padding: 30px;
+  padding-top: 10px;
+  box-shadow: -2px 2px 5px 0 rgb(0 0 0 / 40%);
+  z-index: 1;
 }
