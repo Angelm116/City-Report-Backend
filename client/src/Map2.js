@@ -16,6 +16,7 @@ function Map2(props) {
  
     return (
         <MapWithAMarker
+            reports={props.reports}
             googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVLGDHEq6xP-cu8ja6gJo5dM37gXUGL8k&v=3.exp&libraries=geometry,drawing,places"
             loadingElement={<div style={{ height: `100%` }} />}
             containerElement={<div style={{ height: `93vh` }} />}

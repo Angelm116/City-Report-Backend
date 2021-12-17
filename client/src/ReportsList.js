@@ -1,11 +1,13 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
+import {NavLink} from 'react-router-dom';
 
 
 // Markers is in charge of rendering markers in the map
 // It takes a list of reports as a prop
 function ReportsList(props) {
 
+    console.log(props.reports)
     return (
         // <Card>
         //     <Card.Header as="h6">Suspicious Activity</Card.Header>
@@ -20,6 +22,7 @@ function ReportsList(props) {
         //     </Card.Body>
         // </Card>
 
+
         <div>
             {props.reports.map((report, key) => {
                     return (
@@ -30,19 +33,19 @@ function ReportsList(props) {
     );
 }
 
-function Report({data}) {
+function Report(props) {
     return(
         <div className="cardDiv card-elevation3">
             <Card>
-            <Card.Header as="h5">{data.category}</Card.Header>
+            <Card.Header as="h5">{props.data.category}</Card.Header>
             <Card.Body>
                 {/*<Card.Title>Subtitle</Card.Title>*/}
                 <Card.Text>
-                Location: {data.loc.location_name}
+                Location: {props.data.street_name}
                 <br/>
                 {/*<div dangerouslySetInnerHTML={{ __html:data.description}} />*/}
-                Report Date: {data.date}
-                <NavLink exact className="btn btn-primary cardbtn" to={"/EventInfo/"+ data.event_id}> Report Details </NavLink>
+                Report Date: {props.data.date_time}
+                <NavLink exact className="btn btn-primary cardbtn" to={"/EventInfo/"+ props.data.id}> Report Details </NavLink>
                 </Card.Text>
             </Card.Body>
             </Card>

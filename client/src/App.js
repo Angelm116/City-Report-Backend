@@ -1,12 +1,13 @@
 import React from 'react';
-import Markers from './Markers.js';
 import {BrowserRouter as Router, NavLink, Route, Routes} from 'react-router-dom';
 import 'react-bootstrap';
 import noresult from './noresult.png'; // Might be needed somewhere else
 import './App.css';
 import Map from './Map.js';
+import Map2 from './Map2.js';
 import NavigationBar from './NavigationBar.js';
 import Analytics from './Analytics.js';
+import ReportsPage from './ReportsPage';
 
 // more organized way but is not working, so temporarily under construction
 function App() { 
@@ -16,7 +17,7 @@ function App() {
         <NavigationBar />
         <div>
           <Routes>
-            <Route exact path="/" element={<Map />} />
+            <Route exact path="/" element={<ReportsPage />} />
             <Route exact path="/Analytics" element={<Analytics />} />
           </Routes>
         </div>

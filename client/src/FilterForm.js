@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Form, Row, Col} from 'react-bootstrap';
 
 
@@ -69,7 +69,7 @@ function FilterForm(props) {
                     </Form.Control>
                 </Col>
                 <Col sm={3}>
-                    <button type="button" className="btn btn-primary btn-search" onClick={doSearch}>Search</button>
+                    <button type="button" className="btn btn-primary btn-search" onClick={props.fetch()}>Search</button>
                 </Col>
             </Form.Group>
         </Form>

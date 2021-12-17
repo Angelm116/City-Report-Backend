@@ -46,9 +46,10 @@ function ReportsPage() {
     // }
 
     const getReports = () => {
-        axios.post('http://52.13.199.35/api/map')
+        axios.get('http://18.217.120.94/api/map')
             .then((res) => {
-                console.log(res.data)
+                setReports([...res.data])
+                console.log(reports)
             }).catch((error) => {
                 console.log(error)
             });
@@ -76,7 +77,7 @@ function ReportsPage() {
                 <Col sm={4} className="col-reports">
                     <Row className="filterForm">
                         <h5 style={{ textAlign: "center" }}>Filter by  </h5>
-                        <FilterForm fetch={fetchReports}/>
+                        <FilterForm fetch={getReports}/>
                     </Row>
 
                     <Row className="reportsList">
@@ -85,7 +86,6 @@ function ReportsPage() {
                             <div className="cardDiv card-elevation3">
                                 <ReportsList reports={reports}/>
                             </div>
-                            {reports}
                         </div>
                     </Row>
                 </Col>
