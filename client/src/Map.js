@@ -61,6 +61,23 @@ function Map() {
           }); */
     }
 
+    /*
+      ReportsPage
+
+      component that will encompass the map and the filter form/list
+
+      state: list of reports
+
+      functions: fetch reports through api
+
+      return: 
+              <filterForm> {fetchReports}
+              <mapComponent> {reports}
+              <filterList> {reports}
+
+
+    */
+
     return (
 /*       <Router>
         <MapWithAMarker
@@ -151,6 +168,18 @@ function Map() {
           <div className="event-wrapper">
             <h5 style={{textAlign: "center"}}> Reports </h5>
             <div className="cardDiv card-elevation3">
+                <Card>
+                <Card.Header as="h6">Suspicious Activity</Card.Header>
+                <Card.Body>
+                    <Card.Text>
+                    scnaaaaaaaaaaaaaaaaaaajnscsnck nx jdbvsvndk ncchsiv bcwdc   isjdovdkv bc cdc c hgvwdkvd c csjbv dud hd  bdveucw bbuvf  vn 
+                    <br/>
+                    Location: 2025 Royal Vista Ct. Orlando, Florida, 32817
+                    <br/>
+                    Report Date: 2021-04-28 
+                    </Card.Text>
+                </Card.Body>
+                </Card>
                 <Card>
                 <Card.Header as="h6">Suspicious Activity</Card.Header>
                 <Card.Body>
