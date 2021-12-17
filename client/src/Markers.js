@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import dummyData from './dummydata.json'
+import React from 'react';
 import MarkerWithInfoWindow from './MarkerWithInfoWindow.js'
-import axios from 'axios';
 
 
 // Markers is in charge of rendering markers in the map

@@ -61,22 +61,6 @@ function Map() {
           }); */
     }
 
-    /*
-      ReportsPage
-
-      component that will encompass the map and the filter form/list
-
-      state: list of reports
-
-      functions: fetch reports through api
-
-      return: 
-              <filterForm> {fetchReports}
-              <mapComponent> {reports}
-              <filterList> {reports}
-
-
-    */
 
     return (
 /*       <Router>

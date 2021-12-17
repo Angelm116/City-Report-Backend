@@ -13,9 +13,7 @@ function Map2(props) {
       <Markers reports={props.reports}></Markers>
     </GoogleMap>
   ));
-
-
-     
+ 
     return (
         <MapWithAMarker
             googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDVLGDHEq6xP-cu8ja6gJo5dM37gXUGL8k&v=3.exp&libraries=geometry,drawing,places"
