@@ -105,7 +105,7 @@ Report.getFilteredReports = function(params, result) {
   }
 
   var whereClause = conditions.length ? 'WHERE ' + conditions.join(' AND ') : ''
-  var queryString = 'SELECT * FROM table ' + whereClause;
+  var queryString = 'SELECT * FROM report_schema.reports ' + whereClause;
   
   db.query(queryString, values, function (err, res) {
 

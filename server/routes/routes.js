@@ -10,7 +10,5 @@ router.get('/api/get-filtered-reports', reportsController.get_filtered_reports);
 
 router.post('/api/upload-report', reportsController.create_a_report);
 
-router.post('/api/geocode-API-call', reportsController.geocode_API_call);
-
 
 module.exports = router;
