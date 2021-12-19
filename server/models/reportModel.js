@@ -63,6 +63,8 @@ Report.getFilteredReports = function(params, result) {
 
   var conditions = [];
   var values = [];
+  var radiusResults = []
+  var radiusFlag = false
 
   if (typeof params.country !== 'undefined') {
     conditions.push("country = ?");
@@ -104,6 +106,16 @@ Report.getFilteredReports = function(params, result) {
     values.push(params.endDate);
   }
 
+  // check if radius is a factor, if so set a flag to indicate so later
+  // we make sure that both radius and center are type undefined
+  if (typeof params.radius !== 'undefined' && typeof params.centerlat !== 'undefined'
+  && typeof params.centerlng !== 'undefined') {
+      // set radiusFlag to true, and parse center and radius
+      radiusFlag = true
+      center = {lat: parseFloat(params.centerlat) , lng: parseFloat(params.centerlng)}
+      radius = params.radius
+  }
+
   var whereClause = conditions.length ? 'WHERE ' + conditions.join(' AND ') : ''
   var queryString = 'SELECT * FROM report_schema.reports ' + whereClause;
   
@@ -114,11 +126,32 @@ Report.getFilteredReports = function(params, result) {
               result(null, err);
           }
           else{
-            console.log('tasks : ', res);  
-
-           result(null, res);
+            // Here we sort through and only keep
+            // results that fit inside our radius
+            if (radiusFlag) {
+              // go through all points returned by the db query
+              for (const point of res) {
+                if (withinRadius(point, center, radius))
+                  radiusResults.push(point)
+              }
+              
+              console.log('filtered results: ', radiusResults)
+              // return filetered results
+              result(null, radiusResults)
+            } else {
+              console.log('tasks : ', res);  
+              result(null, res);
+            }
           }
       });   
+}
+
+function withinRadius(point, center, radiuskm) {
+  var ky = 40000 / 360;
+  var kx = Math.cos(Math.PI * center.lat / 180.0) * ky;
+  var dx = Math.abs(center.lng - point.longitude) * kx;
+  var dy = Math.abs(center.lat - point.latitude) * ky;
+  return Math.sqrt(dx * dx + dy * dy) <= radiuskm;
 }
 
 module.exports = Report;

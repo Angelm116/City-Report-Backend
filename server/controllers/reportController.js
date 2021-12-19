@@ -96,6 +96,20 @@ const create_a_report = function(req, res) {
   .catch((e) => console.log("Reverse Geocoder failed due to: " + e));
 };
 
+const get_filtered_reports = function(req, res) {
+
+  Report.getFilteredReports(req.body, function(err, reports) {
+
+    if (err)
+      res.send(err);
+
+    console.log('res', reports);
+    res.send(reports);
+
+  });
+
+};
+
 module.exports = {
   list_all_reports, 
   create_a_report, 
