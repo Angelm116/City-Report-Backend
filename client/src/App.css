@@ -34,7 +34,7 @@
   }
 }
 
-.container{
+.navbar .container{
   margin-left: 2vw;
 }
 
@@ -48,4 +48,22 @@
   padding-top: 10px;
   box-shadow: -2px 2px 5px 0 rgb(0 0 0 / 40%);
   z-index: 1;
+}
+
+.navbar {
+  overflow: hidden;
+  background-color: #61dafb;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.navbar-link {
+  margin: 7px;
+  float: left;
+  text-align: center;
+}
+
+.reportsList{
+  overflow-y: auto;
 }
