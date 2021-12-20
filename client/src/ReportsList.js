@@ -35,8 +35,8 @@ function ReportsList(props) {
 
 function Report(props) {
     return(
-        <div className="cardDiv card-elevation3">
-            <Card>
+        <div className="mt-3">
+            <Card style={{padding: 10}}>
             <Card.Header as="h5">{props.data.category}</Card.Header>
             <Card.Body>
                 {/*<Card.Title>Subtitle</Card.Title>*/}
@@ -45,8 +45,8 @@ function Report(props) {
                 <br/>
                 {/*<div dangerouslySetInnerHTML={{ __html:data.description}} />*/}
                 Report Date: {props.data.date_time}
-                <NavLink exact className="btn btn-primary cardbtn" to={"/EventInfo/"+ props.data.id}> Report Details </NavLink>
                 </Card.Text>
+                <NavLink exact className="btn btn-primary cardbtn" to={"/EventInfo/"+ props.data.id}> Report Details </NavLink>
             </Card.Body>
             </Card>
         </div>

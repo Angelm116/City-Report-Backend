@@ -34,7 +34,7 @@
   }
 }
 
-.container{
+.navbar .container{
   margin-left: 2vw;
 }
 
@@ -50,6 +50,20 @@
   z-index: 1;
 }
 
-.color-nav{
+.navbar {
+  overflow: hidden;
   background-color: #61dafb;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.navbar-link {
+  margin: 7px;
+  float: left;
+  text-align: center;
+}
+
+.reportsList{
+  overflow-y: auto;
 }

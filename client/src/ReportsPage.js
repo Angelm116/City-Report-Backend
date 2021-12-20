@@ -36,7 +36,8 @@ function ReportsPage() {
     // pull our data so that it is ready before rendering
     useEffect(() => {
 
-        getReports()
+        getDummies()
+
     }, [])
 
     // This functions populates data. Currenly it gets info from the 
@@ -45,6 +46,10 @@ function ReportsPage() {
     // const getReports = () => {
     //     setData(dummyData)
     // }
+
+    const getDummies = () => {
+        setReports(dummyData)
+    }
 
     const getReports = () => {
         axios.get('http://18.217.120.94/api/map')
@@ -76,9 +81,9 @@ function ReportsPage() {
                     </div>
                 </Col>
                 <Col sm={4} className="col-reports">
-                    <Row className="filterForm">
-                        <h5 style={{ textAlign: "center" }}>Filter by  </h5>
-                        <FilterForm fetch={getReports}/>
+                    <Row className="filterForm" style={{padding: 12}}>
+                        <h5 style={{ textAlign: "center" }}>Filter by: </h5>
+                        <FilterForm fetch={getDummies}/>
                     </Row>
 
                     <Row className="reportsList">

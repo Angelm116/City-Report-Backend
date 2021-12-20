@@ -7,13 +7,13 @@ import {NavLink} from 'react-router-dom';
 
 function NavigationBar(props) {
   return (
-    <Navbar className="color-nav" variant="light">
+    <Navbar className="navbar" variant="light">
       <Container>
         <Navbar.Brand href="#home">City Report</Navbar.Brand>
         <Nav className="me-auto">
 
-          <li className="nav-item"><NavLink exact className="nav-link" activeClassName="active" to="/">Map</NavLink></li>
-          <li className="nav-item"><NavLink exact className="nav-link" activeClassName="active" to="/Analytics">Analytics</NavLink></li>
+          <li className="navbar-link"><NavLink exact className="nav-link" activeClassName="active" to="/">Map</NavLink></li>
+          <li className="navbar-link"><NavLink exact className="nav-link" activeClassName="active" to="/Analytics">Analytics</NavLink></li>
 
         </Nav>
       </Container>
