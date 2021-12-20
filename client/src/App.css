@@ -10,6 +10,11 @@
   }
 }
 
+.reportsList .cardDiv{
+  height: 60vh;
+  overflow-y: auto;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
