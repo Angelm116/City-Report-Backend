@@ -10,6 +10,12 @@ function FilterForm(props) {
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [categ, setCateg] = useState("");
+
+  const fetch = () => {
+
+    // when the filtering api is finished, we will somehow pass all of the state variables of this components to this funciton. 
+      props.fetch();
+  }
     
     return (
         <Form>
@@ -69,7 +75,7 @@ function FilterForm(props) {
                     </Form.Control>
                 </Col>
                 <Col sm={3}>
-                    <button type="button" className="btn btn-primary btn-search" onClick={props.fetch()}>Search</button>
+                    <button type="button" className="btn btn-primary btn-search" onClick={fetch}>Search</button>
                 </Col>
             </Form.Group>
         </Form>

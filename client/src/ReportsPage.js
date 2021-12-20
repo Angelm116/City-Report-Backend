@@ -35,6 +35,7 @@ function ReportsPage() {
     // the anything renders to the screen. We use it to 
     // pull our data so that it is ready before rendering
     useEffect(() => {
+
         getReports()
     }, [])
 
@@ -49,7 +50,7 @@ function ReportsPage() {
         axios.get('http://18.217.120.94/api/map')
             .then((res) => {
                 setReports([...res.data])
-                console.log(reports)
+                console.log("GETTING REPORTS")
             }).catch((error) => {
                 console.log(error)
             });
