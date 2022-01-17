@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import dummyData from './dummydata.json'
-import MarkerWithInfoWindow from './MarkerWithInfoWindow.js'
 import axios from 'axios';
-import Map2 from './Map2.js'
+import Map from './Map.js'
 import FilterForm from './FilterForm.js'
 import ReportsList from './ReportsList.js'
 import {Container, Row, Col} from 'react-bootstrap';
@@ -77,7 +76,7 @@ function ReportsPage() {
             <Row className="map-page">
                 <Col sm={8} className="col-map">
                     <div className="map-wrapper">
-                        <Map2 reports={reports}/>
+                        <Map reports={reports}/>
                     </div>
                 </Col>
                 <Col sm={4} className="col-reports">

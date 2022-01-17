@@ -1,10 +1,7 @@
 import React from 'react';
 import {BrowserRouter as Router, NavLink, Route, Routes} from 'react-router-dom';
 import 'react-bootstrap';
-import noresult from './noresult.png'; // Might be needed somewhere else
 import './App.css';
-import Map from './Map.js';
-import Map2 from './Map2.js';
 import NavigationBar from './NavigationBar.js';
 import Analytics from './Analytics.js';
 import ReportsPage from './ReportsPage';
