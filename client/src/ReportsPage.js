@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import dummyData from './dummydata.json'
-import MarkerWithInfoWindow from './MarkerWithInfoWindow.js'
 import axios from 'axios';
-import Map2 from './Map2.js'
+import Map from './Map.js'
 import FilterForm from './FilterForm.js'
 import ReportsList from './ReportsList.js'
 import {Container, Row, Col} from 'react-bootstrap';
@@ -36,7 +35,7 @@ function ReportsPage() {
     // pull our data so that it is ready before rendering
     useEffect(() => {
 
-        getDummies()
+        getReports()
 
     }, [])
 
@@ -52,7 +51,7 @@ function ReportsPage() {
     }
 
     const getReports = () => {
-        axios.get('http://18.217.120.94/api/map')
+        axios.get('http://localhost:8080/api/map')
             .then((res) => {
                 setReports([...res.data])
                 console.log("GETTING REPORTS")
@@ -60,7 +59,6 @@ function ReportsPage() {
                 console.log(error)
             });
 
-        //this.setState({ name: '', email: '' })
     }
 
      
@@ -77,7 +75,7 @@ function ReportsPage() {
             <Row className="map-page">
                 <Col sm={8} className="col-map">
                     <div className="map-wrapper">
-                        <Map2 reports={reports}/>
+                        <Map reports={reports}/>
                     </div>
                 </Col>
                 <Col sm={4} className="col-reports">

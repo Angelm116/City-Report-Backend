@@ -1,5 +1,4 @@
 import React from 'react';
-import Markers from './Markers.js';
 import {BrowserRouter as Router, NavLink, Route, Routes} from 'react-router-dom';
 import 'react-bootstrap';
 import Navbar from 'react-bootstrap/Navbar'
