@@ -1,24 +1,17 @@
-var Report = require('../models/reportModel.js');
+
+// This file containes the controllers for each route. 
+// Controllers are functions that get executed when a request is made to a given route
+
+var Report = require('./reportModel.js');
 const {Client} = require("@googlemaps/google-maps-services-js");
 
-const list_all_reports = function(req, res) {
-  Report.getAllReports(function(err, reports) {
+// Adds the given report to the database
+const upload_report = function(req, res) {
 
-    console.log('controller');
-
-    if (err)
-      res.send(err);
-
-    console.log('res', reports);
-    res.send(reports);
-  });
-};
-
-const create_a_report = function(req, res) {
-  // create client that makes calls to google maps api
+  // Use Google Maps reverse geocoding API to get information about the location of the report. 
   const client = new Client({});
   
-  // perform reverse geocoding, pass lat/lng and our key
+  // perform reverse geocoding, pass lat/lng and our key API key (TO-DO: HIDE/ENCRYPT API KEY)
   client.reverseGeocode({
     params: {
       latlng: {lat: parseFloat(req.body.lat) , lng: parseFloat(req.body.lng)},
@@ -82,6 +75,7 @@ const create_a_report = function(req, res) {
         res.status(400).send({ error:true, message: 'empty report submitted' });
       }
       else{
+        // Use the report model to create a new report
         Report.createReport(new_report, function(err, report) {
           if (err)
             res.send(err);
@@ -92,18 +86,21 @@ const create_a_report = function(req, res) {
     } else {
       console.log("No results found");
     }
-  })
-  .catch((e) => console.log("Reverse Geocoder failed due to: " + e));
+  }).catch((e) => console.log("Reverse Geocoder failed due to: " + e));
 };
 
-const get_filtered_reports = function(req, res) {
+// Returns a list of reports from the database:
+// Inputs: an object (JSON) containing the parameters to filter by.
+// If no input is given (empty JSON), returns all reports in the database 
+const get_reports = function(req, res) {
 
-  Report.getFilteredReports(req.body, function(err, reports) {
+  // Use the report model to get reports
+  Report.getReports(req, function(err, reports) {
 
     if (err)
       res.send(err);
 
-    console.log('res', reports);
+    //console.log('res', reports);
     res.send(reports);
 
   });
@@ -111,8 +108,7 @@ const get_filtered_reports = function(req, res) {
 };
 
 module.exports = {
-  list_all_reports, 
-  create_a_report, 
-  get_filtered_reports,
+  upload_report, 
+  get_reports,
 }
 

@@ -35,42 +35,27 @@ function ReportsPage() {
     // pull our data so that it is ready before rendering
     useEffect(() => {
 
-        getReports()
+        getReports({})
 
     }, [])
 
-    // This functions populates data. Currenly it gets info from the 
-    // dummydata.js file, but in the future it will call our API to 
-    // get the data
-    // const getReports = () => {
-    //     setData(dummyData)
-    // }
 
     const getDummies = () => {
         setReports(dummyData)
     }
 
-    const getReports = () => {
-        axios.get('http://localhost:8080/api/map')
+    const getReports = (params) => {
+        axios.get('http://localhost:8080/api/get-reports', {params})
             .then((res) => {
                 setReports([...res.data])
-                console.log("GETTING REPORTS")
             }).catch((error) => {
                 console.log(error)
             });
-
     }
 
      
     return (
-        // row
-        // column 1
-              // <map>
-        // column 2
-              // row 1: filterForm
-              // row 2: reportList
-
-
+        
         <Container fluid>
             <Row className="map-page">
                 <Col sm={8} className="col-map">
@@ -81,7 +66,7 @@ function ReportsPage() {
                 <Col sm={4} className="col-reports">
                     <Row className="filterForm" style={{padding: 12}}>
                         <h5 style={{ textAlign: "center" }}>Filter by: </h5>
-                        <FilterForm fetch={getDummies}/>
+                        <FilterForm fetch={getReports}/>
                     </Row>
 
                     <Row className="reportsList">

@@ -9,12 +9,22 @@ function FilterForm(props) {
   const [zipcode, setZipcode] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [categ, setCateg] = useState("");
+  const [category, setCategory] = useState("");
 
   const fetch = () => {
 
     // when the filtering api is finished, we will somehow pass all of the state variables of this components to this funciton. 
-      props.fetch();
+      const params = {}
+
+      if (county != "") { params.county = county}
+      if (city != "") { params.city = city}
+      if (zipcode != "") { params.zipcode = zipcode}
+      if (startDate != "") { params.startDate = startDate}
+      if (endDate != "") { params.endDate = endDate}
+      if (category != "") { params.category = category}
+
+      console.log(params)
+      props.fetch(params);
   }
     
     return (
@@ -61,12 +71,12 @@ function FilterForm(props) {
                 </Col>
             </Form.Group>
 
-            <Form.Group as={Row} className="mb-3" controlId="Category">
+            <Form.Group as={Row} className="mb-3" controlId="category">
                 <Form.Label column sm={2}>
-                    Category
+                    category
                 </Form.Label>
                 <Col sm={7}>
-                    <Form.Control as="select" type="category" placeholder="category" value={categ} onChange={(x) => setCateg(x.target.value)}>
+                    <Form.Control as="select" type="category" placeholder="category" value={category} onChange={(x) => setCategory(x.target.value)}>
                         <option value="">All</option>
                         <option value="Pedestrian danger">Pedestrian danger</option>
                         <option value="Dangerous intersection">Dangerous intersection</option>

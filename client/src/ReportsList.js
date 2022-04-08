@@ -7,7 +7,6 @@ import {NavLink} from 'react-router-dom';
 // It takes a list of reports as a prop
 function ReportsList(props) {
 
-    console.log(props.reports)
     return (
         // <Card>
         //     <Card.Header as="h6">Suspicious Activity</Card.Header>

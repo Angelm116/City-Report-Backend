@@ -1,6 +1,11 @@
-const db = require("../db.js");
 
-// constructor
+// This file contains the Report model. 
+// This model is our representation of a report in terms of the database fields. 
+// This model also serves as our means of communication with the reports database. 
+
+const db = require("./db.js");
+
+// Report Constructor
 const Report = function(report) {
   this.country = report.country, 
   this.state = report.state,
@@ -16,21 +21,11 @@ const Report = function(report) {
   this.report_description = report.report_description
 };
 
-// "country":"", 
-// "state":"",
-// "county":"",
-// "city":"", 
-// "zipcode":"", 
-// "street_number":"", 
-// "street_name":"", 
-// "latitude":"", 
-// "longitude":"", 
-// "date_time":"", 
-// "category":"", 
-// "description":""
 
-
+// Uploads given report into the database
 Report.createReport = (newReport, result) => {
+  
+  // SQL Query
   db.query(`INSERT INTO reports SET ?`, newReport, (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -43,77 +38,72 @@ Report.createReport = (newReport, result) => {
   });
 };
 
-Report.getAllReports = function (result) {
-  
-  db.query("Select * from reports", function (err, res) {
+// Returns all the reports that satisfy all of the given filters
+Report.getReports = function(req, result) {
 
-          if(err) {
-              console.log("error: ", err);
-              result(null, err);
-          }
-          else{
-            console.log('tasks : ', res);  
-
-           result(null, res);
-          }
-      });   
-};
-
-Report.getFilteredReports = function(params, result) {
+  // Construct an SQL query based on the included filters
 
   var conditions = [];
   var values = [];
   var radiusResults = []
   var radiusFlag = false
 
-  if (typeof params.country !== 'undefined') {
+  // Country
+  if (typeof req.query.country !== 'undefined') {
     conditions.push("country = ?");
-    values.push(params.country);
+    values.push(req.query.country);
   }
 
-  if (typeof params.state !== 'undefined') {
+  // State
+  if (typeof req.query.state !== 'undefined') {
     conditions.push("state = ?");
-    values.push(params.state);
+    values.push(req.query.state);
   }
 
-  if (typeof params.county !== 'undefined') {
+  // County
+  if (typeof req.query.county !== 'undefined') {
     conditions.push("county = ?");
-    values.push(params.county);
+    values.push(req.query.county);
   }
 
-  if (typeof params.city !== 'undefined') {
+  // City
+  if (typeof req.query.city !== 'undefined') {
     conditions.push("city = ?");
-    values.push(params.city);
+    values.push(req.query.city);
   }
 
-  if (typeof params.zipcode !== 'undefined') {
+  // Zipcode
+  if (typeof req.query.zipcode !== 'undefined') {
     conditions.push("zipcode = ?");
-    values.push(params.zipcode);
+    values.push(req.query.zipcode);
   }
 
-  if (typeof params.category !== 'undefined') {
+  // Category
+  if (typeof req.query.category !== 'undefined') {
     conditions.push("category = ?");
-    values.push(params.category);
+    values.push(req.query.category);
   }
 
-  if (typeof params.startDate !== 'undefined') {
+  // Start Date
+  if (typeof req.query.startDate !== 'undefined') {
     conditions.push("date_time >= ?");
-    values.push(params.startDate);
+    values.push(req.query.startDate);
   }
 
-  if (typeof params.endDate !== 'undefined') {
+  // End Date
+  if (typeof req.query.endDate !== 'undefined') {
     conditions.push("date_time <= ?");
-    values.push(params.endDate);
+    values.push(req.query.endDate);
   }
 
   // check if radius is a factor, if so set a flag to indicate so later
   // we make sure that both radius and center are type undefined
-  if (typeof params.radius !== 'undefined' && typeof params.centerlat !== 'undefined'
-  && typeof params.centerlng !== 'undefined') {
+  if (typeof req.query.radius !== 'undefined' && typeof req.query.centerlat !== 'undefined'
+  && typeof req.query.centerlng !== 'undefined') {
       // set radiusFlag to true, and parse center and radius
       radiusFlag = true
-      center = {lat: parseFloat(params.centerlat) , lng: parseFloat(params.centerlng)}
-      radius = params.radius
+      center = {lat: parseFloat(req.query.centerlat) , lng: parseFloat(req.query.centerlng)}
+      radius = req.query.radius
   }
 
   var whereClause = conditions.length ? 'WHERE ' + conditions.join(' AND ') : ''
@@ -135,11 +125,11 @@ Report.getFilteredReports = function(params, result) {
                   radiusResults.push(point)
               }
               
-              console.log('filtered results: ', radiusResults)
+              //console.log('filtered results: ', radiusResults)
               // return filetered results
               result(null, radiusResults)
             } else {
-              console.log('tasks : ', res);  
+              //console.log('tasks : ', res);  
               result(null, res);
             }
           }
