@@ -1,5 +1,4 @@
 import React,  { useState }  from 'react';
-//import Markers from './Markers.js';
 import {
   withScriptjs,
   withGoogleMap,

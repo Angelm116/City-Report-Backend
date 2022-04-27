@@ -8,30 +8,14 @@ import {Container, Row, Col} from 'react-bootstrap';
 import './App.css';
 
 
-/*
-    ReportsPage
-
-    component that will encompass the map and the filter form/list
-
-    state: list of reports
-
-    functions: fetch reports through api
-
-    return: 
-            <filterForm> {fetchReports}
-            <mapComponent> {reports}
-            <filterList> {reports}
-
-
-*/
-
+// This components serves as a container for the map, filter form, and report list; 
+// It also makes the function call to fetch data from the server. 
 function ReportsPage() {
-    // data is the list of report objects that will be
-    // displayed in the map. 
-    const [reports, setReports] = useState([]);
+    
+    const [reports, setReports] = useState([]);             // list of reports pulled from server
 
     // useEffect is a React hook that executes before
-    // the anything renders to the screen. We use it to 
+    // anything renders to the screen. We use it to 
     // pull our data so that it is ready before rendering
     useEffect(() => {
 
@@ -39,13 +23,15 @@ function ReportsPage() {
 
     }, [])
 
-
+    // In the event that the server is not running, 
+    // This function can be used to populate reports with dummy data
     const getDummies = () => {
         setReports(dummyData)
     }
 
+    // Fetch data from the databse
     const getReports = (params) => {
-        axios.get('http://localhost:8080/api/get-reports', {params})
+        axios.get('http://test3-env-1.eba-sag8w2d6.us-east-2.elasticbeanstalk.com/api/get-reports', {params})
             .then((res) => {
                 setReports([...res.data])
             }).catch((error) => {
@@ -64,14 +50,15 @@ function ReportsPage() {
                     </div>
                 </Col>
                 <Col sm={4} className="col-reports">
-                    <Row className="filterForm" style={{padding: 12}}>
-                        <h5 style={{ textAlign: "center" }}>Filter by: </h5>
+                    
+                    <Row className="filterForm" style={{padding: 12}}>  
+                        <h5 style={{ textAlign: "center", display: "inline-block" }}>Filters: </h5>                       
                         <FilterForm fetch={getReports}/>
                     </Row>
-
+                
                     <Row className="reportsList">
                         <div className="event-wrapper">
-                            <h5 style={{ textAlign: "center" }}> Reports </h5>
+                            <h5 style={{ textAlign: "center" }}> {reports.length + " Reports Found:"} </h5>
                             <div className="cardDiv card-elevation3">
                                 <ReportsList reports={reports}/>
                             </div>

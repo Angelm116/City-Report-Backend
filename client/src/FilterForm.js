@@ -29,21 +29,22 @@ function FilterForm(props) {
     
     return (
         <Form>
+
+            <Form.Group as={Row} className="mb-3" controlId="City">
+                <Form.Label className="font-weight-bold" column sm={2}>
+                    City
+                </Form.Label>
+                <Col sm={9}>
+                    <Form.Control placeholder="Orlando" value={city} onChange={(x) => setCity(x.target.value)} />
+                </Col>
+            </Form.Group>
+
             <Form.Group as={Row} className="mb-3" controlId="County">
                 <Form.Label column sm={2}>
                     County
                 </Form.Label>
                 <Col sm={9}>
-                    <Form.Control placeholder="county" value={county} onChange={(x) => setCounty(x.target.value)} />
-                </Col>
-            </Form.Group>
-
-            <Form.Group as={Row} className="mb-3" controlId="City">
-                <Form.Label column sm={2}>
-                    City
-                </Form.Label>
-                <Col sm={9}>
-                    <Form.Control placeholder="city" value={city} onChange={(x) => setCity(x.target.value)} />
+                    <Form.Control placeholder="Orange" value={county} onChange={(x) => setCounty(x.target.value)} />
                 </Col>
             </Form.Group>
 
@@ -52,7 +53,7 @@ function FilterForm(props) {
                     Zipcode
                 </Form.Label>
                 <Col sm={9}>
-                    <Form.Control placeholder="zipcode" value={zipcode} onChange={(x) => setZipcode(x.target.value)} />
+                    <Form.Control placeholder="32816" value={zipcode} onChange={(x) => setZipcode(x.target.value)} />
                 </Col>
             </Form.Group>
 
@@ -73,7 +74,7 @@ function FilterForm(props) {
 
             <Form.Group as={Row} className="mb-3" controlId="category">
                 <Form.Label column sm={2}>
-                    category
+                    Category
                 </Form.Label>
                 <Col sm={7}>
                     <Form.Control as="select" type="category" placeholder="category" value={category} onChange={(x) => setCategory(x.target.value)}>

@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Container from 'react-bootstrap/Container'
 import {NavLink} from 'react-router-dom';
 
+// This component manages the navigation bar at the top of the page. 
 function NavigationBar(props) {
   return (
     <Navbar className="navbar" variant="light">

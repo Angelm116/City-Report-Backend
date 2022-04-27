@@ -10,12 +10,18 @@ const upload_report = function(req, res) {
 
   // Use Google Maps reverse geocoding API to get information about the location of the report. 
   const client = new Client({});
+
+  // Check that the report has coordinates, a date, and a category
+  isValid = req.body.lat != undefined && req.body.lng != undefined && req.body.date_time != undefined && req.body.category != undefined
+  if (!isValid) {
+    res.status(400).send({ error:true, message: 'report submitted is empty, incomplete, or malformed' });
+  }
   
   // perform reverse geocoding, pass lat/lng and our key API key (TO-DO: HIDE/ENCRYPT API KEY)
   client.reverseGeocode({
     params: {
       latlng: {lat: parseFloat(req.body.lat) , lng: parseFloat(req.body.lng)},
-      key: "AIzaSyAQw10ndgEutTniHm00lcLXAnZVbBFEweM"
+      key: "AIzaSyCBOmEcxHzmDCqDnODJEwh-5AdrlRfOncM"
     },
     timeout: 1000, // milliseconds
   })
@@ -70,23 +76,22 @@ const upload_report = function(req, res) {
       // creates the report object
       var new_report = new Report(addressComponents)
 
-      //handles null error 
-      if(!new_report){
-        res.status(400).send({ error:true, message: 'empty report submitted' });
-      }
-      else{
-        // Use the report model to create a new report
-        Report.createReport(new_report, function(err, report) {
-          if (err)
-            res.send(err);
-          res.json(report);
-        });
-      }
+      // Use the report model to create a new report
+      Report.createReport(new_report, function(err, report) {
+        if (err)
+          res.send(err);
+        res.json(report);
+      });
+      
 
     } else {
       console.log("No results found");
     }
-  }).catch((e) => console.log("Reverse Geocoder failed due to: " + e));
+  }).catch((e) => {
+    console.log("Reverse Geocoder failed due to: " + e)
+    res.status(500).send({ error:true, message: "Reverse Geocoder failed due to: " + e });
+    
+  });
 };
 
 // Returns a list of reports from the database:
